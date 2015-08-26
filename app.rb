@@ -18,8 +18,9 @@ class App < Sinatra::Base
   post "/webhook" do
     events = JSON.parse(request.body.read)
 
-    events.each do |event|
-      dog.emit_point("sendgrid.event.#{event['event']}", 1, timestamp: Time.at(event["timestamp"]), type: "counter")
+    events.group_by { |event| event["event"] }.each do |type, evs|
+      points = evs.map { |ev| [Time.at(ev["timestamp"]), 1] }
+      dog.emit_points("sendgrid.event.#{type}", points, type: "counter")
     end
 
     "Events was sent to Datadog"
