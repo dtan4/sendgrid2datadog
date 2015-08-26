@@ -7,6 +7,10 @@ class App < Sinatra::Base
     set :dog, Dogapi::Client.new(ENV["DD_API_KEY"])
   end
 
+  def dog
+    settings.dog
+  end
+
   get "/" do
     "https://github.com/dtan4/sendgrid2datadog"
   end
