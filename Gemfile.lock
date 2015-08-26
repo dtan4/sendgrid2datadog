@@ -1,9 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dogapi (1.20.0)
-      multi_json
-    multi_json (1.11.2)
+    dogstatsd-ruby (1.5.0)
     puma (2.13.4)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -18,7 +16,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dogapi
+  dogstatsd-ruby
   puma
   sinatra (~> 1.4.6)
 

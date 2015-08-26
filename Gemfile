@@ -3,6 +3,6 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
-gem "dogapi"
+gem "dogstatsd-ruby"
 gem "puma"
 gem "sinatra", "~> 1.4.6"

@@ -1,14 +1,14 @@
-require "dogapi"
 require "json"
 require "sinatra/base"
+require "statsd"
 
 class App < Sinatra::Base
   configure do
-    set :dog, Dogapi::Client.new(ENV["DD_API_KEY"])
+    set :statsd, Statsd.new("localhost", 8125)
   end
 
-  def dog
-    settings.dog
+  def statsd
+    settings.statsd
   end
 
   get "/" do
@@ -18,10 +18,10 @@ class App < Sinatra::Base
   post "/webhook" do
     events = JSON.parse(request.body.read)
 
-    events.group_by { |event| event["event"] }.each do |type, evs|
-      points = evs.map { |ev| [Time.at(ev["timestamp"]), 1] }
-      p({ type: type, points: points })
-      dog.emit_points("sendgrid.event.#{type}", points, type: "counter")
+    statsd.batch do |s|
+      events.each do |event|
+        s.increment("sendgrid.event.#{event['type']}")
+      end
     end
 
     "Events was sent to Datadog"
