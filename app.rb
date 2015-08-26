@@ -20,7 +20,7 @@ class App < Sinatra::Base
 
     statsd.batch do |s|
       events.each do |event|
-        s.increment("sendgrid.event.#{event['type']}")
+        s.increment("sendgrid.event.#{event['event']}")
       end
     end
 
