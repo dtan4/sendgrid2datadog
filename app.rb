@@ -19,7 +19,7 @@ class App < Sinatra::Base
     events = JSON.parse(request.body.read)
 
     events.each do |event|
-      dog.emit_point("sendgrid.event.#{event['event']}", 1, timestamp: Time.parse(event["timestamp"]), type: "counter")
+      dog.emit_point("sendgrid.event.#{event['event']}", 1, timestamp: Time.at(event["timestamp"]), type: "counter")
     end
   end
 end
