@@ -20,7 +20,7 @@ class App < Sinatra::Base
 
     events.group_by { |event| event["event"] }.each do |type, evs|
       points = evs.map { |ev| [Time.at(ev["timestamp"]), 1] }
-      p({ type: type, evs: evs })
+      p({ type: type, points: points })
       dog.emit_points("sendgrid.event.#{type}", points, type: "counter")
     end
 
