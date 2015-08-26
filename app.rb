@@ -21,5 +21,7 @@ class App < Sinatra::Base
     events.each do |event|
       dog.emit_point("sendgrid.event.#{event['event']}", 1, timestamp: Time.at(event["timestamp"]), type: "counter")
     end
+
+    "Events was sent to Datadog"
   end
 end
