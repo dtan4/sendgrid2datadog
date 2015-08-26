@@ -4,6 +4,7 @@ GEM
     dogapi (1.20.0)
       multi_json
     multi_json (1.11.2)
+    puma (2.13.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -18,6 +19,7 @@ PLATFORMS
 
 DEPENDENCIES
   dogapi
+  puma
   sinatra (~> 1.4.6)
 
 BUNDLED WITH
