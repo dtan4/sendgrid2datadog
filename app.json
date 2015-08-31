@@ -1,0 +1,19 @@
+{
+  "name": "SendGrid2Datadog",
+  "description": "Send SendGrid metrics to Datadog",
+  "repository": "https://github.com/dtan4/sendgrid2datadog",
+  "keywords": ["ruby", "sendgrid", "datadog", "relay"],
+  "env": {
+    "DATADOG_API_KEY": {
+      "description": "API key of Datadog"
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Name of this application"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/ddollar/heroku-buildpack-multi"
+    }
+  ]
+}
