@@ -1,0 +1,6 @@
+*
+!Dockerfile
+!app.rb
+!config.ru
+!Gemfile
+!Gemfile.lock
