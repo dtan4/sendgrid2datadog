@@ -15,4 +15,4 @@ COPY . /app
 
 EXPOSE 9292
 
-CMD ["bundle", "exec", "rackup", "-E", "production", "-p", "9292"]
+CMD ["bundle", "exec", "rackup", "-E", "production", "-p", "9292", "-o", "0.0.0.0"]
