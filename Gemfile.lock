@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dogstatsd-ruby (1.5.0)
+    dogstatsd-ruby (2.1.0)
     puma (3.6.2)
     rack (1.6.5)
     rack-protection (1.5.3)
@@ -16,7 +16,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dogstatsd-ruby
+  dogstatsd-ruby (~> 2.1.0)
   puma (~> 3.6.2)
   sinatra (~> 1.4.6)
 
