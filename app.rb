@@ -1,11 +1,11 @@
 require "json"
 require "logger"
 require "sinatra/base"
-require "statsd"
+require "datadog/statsd"
 
 class App < Sinatra::Base
   configure do
-    set :statsd, Statsd.new(ENV["DOGSTATSD_HOST"] || "localhost", 8125)
+    set :statsd, Datadog::Statsd.new(ENV["DOGSTATSD_HOST"] || "localhost", 8125)
     use Rack::CommonLogger, Logger.new(STDOUT)
   end
 
