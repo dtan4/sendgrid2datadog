@@ -16,6 +16,7 @@ const (
 	defaultDogStatsDHost = "127.0.0.1"
 	defaultDogStatsDPort = "8125"
 	defaultMetricPrefix  = "sendgrid.event."
+	defaultServerPort    = "8080"
 )
 
 var (
@@ -70,7 +71,10 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var dogStatsDHost, dogStatsDPort string
+	var (
+		dogStatsDHost, dogStatsDPort string
+		serverPort                   string
+	)
 
 	dogStatsDHost = os.Getenv("DOGSTATSD_HOST")
 	if dogStatsDHost == "" {
@@ -89,6 +93,11 @@ func main() {
 		metricPrefix = defaultMetricPrefix
 	}
 
+	serverPort = os.Getenv("PORT")
+	if serverPort == "" {
+		serverPort = defaultServerPort
+	}
+
 	var err error
 
 	statsdClient, err = statsd.New(dogStatsDAddr)
@@ -105,5 +114,5 @@ func main() {
 
 	fmt.Println("Server started.")
 
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(fmt.Sprintf(":%s", serverPort), r)
 }
