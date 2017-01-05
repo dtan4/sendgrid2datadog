@@ -5,7 +5,7 @@ services:
     environment:
       - DOGSTATSD_HOST=dogstatsd
     ports:
-      - 9292:9292
+      - 8080:8080
   dogstatsd:
     image: datadog/docker-dd-agent:latest-dogstatsd
     environment:
