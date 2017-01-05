@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	defaultDogStatsdHost = "127.0.0.1"
-	defaultDogStatsdPort = "8125"
+	defaultDogStatsDHost = "127.0.0.1"
+	defaultDogStatsDPort = "8125"
 	defaultMetricPrefix  = "sendgrid.event."
 )
 
@@ -70,19 +70,19 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var dogStatsdHost, dogStatsdPort string
+	var dogStatsDHost, dogStatsDPort string
 
-	dogStatsdHost = os.Getenv("DOGSTATSD_HOST")
-	if dogStatsdHost == "" {
-		dogStatsdHost = defaultDogStatsdHost
+	dogStatsDHost = os.Getenv("DOGSTATSD_HOST")
+	if dogStatsDHost == "" {
+		dogStatsDHost = defaultDogStatsDHost
 	}
 
-	dogStatsdPort = os.Getenv("DOGSTATSD_PORT")
-	if dogStatsdPort == "" {
-		dogStatsdPort = defaultDogStatsdPort
+	dogStatsDPort = os.Getenv("DOGSTATSD_PORT")
+	if dogStatsDPort == "" {
+		dogStatsDPort = defaultDogStatsDPort
 	}
 
-	dogStatsdAddr := fmt.Sprintf("%s:%s", dogStatsdHost, dogStatsdPort)
+	dogStatsDAddr := fmt.Sprintf("%s:%s", dogStatsDHost, dogStatsDPort)
 
 	metricPrefix = os.Getenv("METRIC_PREFIX")
 	if metricPrefix == "" {
@@ -91,7 +91,7 @@ func main() {
 
 	var err error
 
-	statsdClient, err = statsd.New(dogStatsdAddr)
+	statsdClient, err = statsd.New(dogStatsDAddr)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
