@@ -62,7 +62,7 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 
 	for _, event := range events {
 		if err := statsdClient.Incr(metricPrefix+event.Event, nil, 1); err != nil {
-			w.WriteHeader(http.StatusBadRequest)
+			w.WriteHeader(http.StatusBadGateway)
 			fmt.Fprintf(w, "%s", err)
 			return
 		}
