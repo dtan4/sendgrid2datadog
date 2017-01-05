@@ -53,12 +53,6 @@ ifeq ($(findstring ELF 64-bit LSB,$(shell file bin/$(NAME) 2> /dev/null)),)
 endif
 	docker build -t $(DOCKER_IMAGE) .
 
-.PHONY: docker-test
-docker-test:
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(MAKE)
-	$(MAKE) docker-build
-	docker run --rm $(DOCKER_IMAGE) version
-
 .PHONY: glide
 glide:
 ifeq ($(shell command -v glide 2> /dev/null),)
