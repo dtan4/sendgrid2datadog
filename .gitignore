@@ -75,3 +75,4 @@ vendor/
 
 /sendgrid2datadog
 /bin
+/dist
