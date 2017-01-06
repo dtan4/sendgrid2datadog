@@ -23,6 +23,17 @@ spec:
         name: sendgrid2datadog
         ports:
         - containerPort: 8080
+        env:
+        - name: BASIC_AUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: sendgrid2datadog
+              key: basic-auth-username
+        - name: BASIC_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sendgrid2datadog
+              key: basic-auth-password
       - image: datadog/docker-dd-agent:latest-dogstatsd
         name: dogstatsd
         ports:

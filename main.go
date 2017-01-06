@@ -20,8 +20,10 @@ const (
 )
 
 var (
-	metricPrefix string
-	statsdClient *statsd.Client
+	basicAuthPassword string
+	basicAuthUsername string
+	metricPrefix      string
+	statsdClient      *statsd.Client
 )
 
 // SendGridEvents represents the scheme of Event Webhook body
@@ -46,6 +48,14 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
+	if basicAuthUsername != "" && basicAuthPassword != "" {
+		if !checkAuth(r) {
+			w.WriteHeader(http.StatusUnauthorized)
+			fmt.Fprintf(w, "Unauthorized")
+			return
+		}
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -70,11 +80,23 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func checkAuth(r *http.Request) bool {
+	username, password, ok := r.BasicAuth()
+	if !ok {
+		return false
+	}
+
+	return username == basicAuthUsername && password == basicAuthPassword
+}
+
 func main() {
 	var (
 		dogStatsDHost, dogStatsDPort string
 		serverPort                   string
 	)
+
+	basicAuthUsername = os.Getenv("BASIC_AUTH_USERNAME")
+	basicAuthPassword = os.Getenv("BASIC_AUTH_PASSWORD")
 
 	dogStatsDHost = os.Getenv("DOGSTATSD_HOST")
 	if dogStatsDHost == "" {
