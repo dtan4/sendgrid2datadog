@@ -136,5 +136,8 @@ func main() {
 
 	fmt.Println("Server started.")
 
-	http.ListenAndServe(fmt.Sprintf(":%s", serverPort), r)
+	if err := http.ListenAndServe(fmt.Sprintf(":%s", serverPort), r); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
