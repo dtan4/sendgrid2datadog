@@ -40,6 +40,16 @@ Send SendGrid metrics to Datadog
 kubectl create -f kubernetes
 ```
 
+## Environment variables
+
+|Key|Description|Required|
+|---|---|---|
+|`BASIC_AUTH_USERNAME`|basic auth username||
+|`BASIC_AUTH_USERNAME`|basic auth password||
+|`DATADOG_API_KEY`|Datadog API key|Required|
+
+If both `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` are provided, basic auth will be enabled.
+
 ## License
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
