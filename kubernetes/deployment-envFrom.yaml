@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sendgrid2datadog
+  namespace: sendgrid2datadog
+  labels:
+    name: sendgrid2datadog
+    role: web
+spec:
+  minReadySeconds: 30
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      name: sendgrid2datadog
+      labels:
+        name: sendgrid2datadog
+        role: web
+    spec:
+      containers:
+      - image: quay.io/dtan4/sendgrid2datadog:latest
+        name: sendgrid2datadog
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: sendgrid2datadog
+      - image: datadog/docker-dd-agent:latest-dogstatsd
+        name: dogstatsd
+        ports:
+        - containerPort: 8125
+        envFrom:
+        - secretRef:
+            name: dd-agent
