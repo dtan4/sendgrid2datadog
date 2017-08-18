@@ -49,11 +49,11 @@ kubectl create -f kubernetes/deployment.yaml
 
 ## Environment variables
 
-|Key|Kubernetes Secret name|Description|Required|
+|Kubernetes Secret name|Key|Description|Required|
 |---|---|---|---|
-|`BASIC_AUTH_USERNAME`|`sendgrid2datadog`|basic auth username||
-|`BASIC_AUTH_USERNAME`|`sendgrid2datadog`|basic auth password||
-|`DATADOG_API_KEY`|`dd-agent`|Datadog API key|Required|
+|`sendgrid2datadog`|`BASIC_AUTH_USERNAME`|basic auth username||
+|`sendgrid2datadog`|`BASIC_AUTH_PASSWORD`|basic auth password||
+|`dd-agent`|`DATADOG_API_KEY`|Datadog API key|Required|
 
 If both `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` are provided, basic auth will be enabled.
 
