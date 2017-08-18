@@ -50,7 +50,7 @@ kubectl create -f kubernetes/deployment.yaml
 ## Environment variables
 
 |Key|Kubernetes Secret name|Description|Required|
-|---|---|---|
+|---|---|---|---|
 |`BASIC_AUTH_USERNAME`|`sendgrid2datadog`|basic auth username||
 |`BASIC_AUTH_USERNAME`|`sendgrid2datadog`|basic auth password||
 |`DATADOG_API_KEY`|`dd-agent`|Datadog API key|Required|
