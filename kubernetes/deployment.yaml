@@ -23,6 +23,12 @@ spec:
         name: sendgrid2datadog
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
         env:
         - name: BASIC_AUTH_USERNAME
           valueFrom:
