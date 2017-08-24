@@ -8,17 +8,17 @@ Send SendGrid metrics to Datadog
 ![sendgrid2datadog](images/sendgrid2datadog.png)
 
 ```
-+----------+
-|          |
-| SendGrid |
-|          |
-+----------+
-     |
-     | Event Notification
-     |
-+====|================================+
-|    |     SendGrid2Datadog           |
-|    v                                |
+  +----------+
+  |          |
+  | SendGrid |
+  |          |
+  +----------+
+      |
+      | Event Notification
+      |
++=====|===============================+
+|     |    SendGrid2Datadog           |
+|     v                               |
 | +------------+        +-----------+ |           +---------+
 | |            |        |           | |           |         |
 | | API Server | -----> | DogStatsD |-----------> | DataDog |
