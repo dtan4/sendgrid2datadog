@@ -10,6 +10,9 @@ spec:
   minReadySeconds: 30
   strategy:
     type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
   replicas: 1
   template:
     metadata:
