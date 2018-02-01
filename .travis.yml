@@ -3,7 +3,7 @@ services:
   - docker
 language: go
 go:
-  - '1.7'
+  - '1.9.3'
 install:
   - make deps
 script:
